@@ -1,24 +1,24 @@
 import React from 'react';
-import logo from './assets/icons/logo.svg';
-import {SApp, SHeader, SLink, SLogo} from "./assets/styles/app.styles";
+import { Routes, Route } from 'react-router-dom';
+import Login from './pages/Login';
+import Signup from './pages/Signup';
+import Layout from './components/Layout';
+import Main from './pages/Main';
+import NotFound from './pages/NotFound';
+import {Auth} from "./components/Auth";
 
 function App() {
     return (
-        <SApp>
-            <SHeader>
-                <SLogo src={logo} alt="logo"/>
-                <p>
-                    Edit <code>src/App.tsx</code> and save to reload.
-                </p>
-                <SLink
-                    href="https://reactjs.org"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Learn React
-                </SLink>
-            </SHeader>
-        </SApp>
+        <Auth>
+            <Routes>
+                <Route path='/' element={<Layout />}>
+                    <Route index element={<Main />} />
+                    <Route path='other' element={<NotFound />} />
+                </Route>
+                <Route path='/login' element={<Login />} />
+                <Route path='/signup' element={<Signup />} />
+            </Routes>
+        </Auth>
     );
 }
 
